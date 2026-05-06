@@ -1,0 +1,20 @@
+node_modules/
+.venv/
+out/*.mp4
+public/*.wav
+
+# Gitignore generated voice files — but keep the two shipped ones
+public/*-voice.m4a
+!public/hooks-voice.m4a
+!public/voice-reference.m4a
+!public/.gitkeep
+
+# Secrets
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build cache
+.remotion/

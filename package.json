@@ -1,0 +1,22 @@
+{
+  "name": "claude-code-reels",
+  "version": "1.0.0",
+  "description": "Generate professional Instagram Reels for Claude Code features — voice-cloned narration + animated video",
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render ClaudeCodeReel --output out/reel.mp4 --codec h264 --crf 8",
+    "voice": "python3 scripts/generate_voice.py"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.290",
+    "@remotion/google-fonts": "4.0.290",
+    "@remotion/transitions": "4.0.290",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "remotion": "4.0.290"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}

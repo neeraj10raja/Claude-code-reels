@@ -1,0 +1,3 @@
+voice-reference.m4a — included sample voice, used by default.
+To use your own voice: record 10–30s of clear speech and pass --ref to generate_voice.py.
+Generated audio files (*-voice.m4a) are gitignored and created locally.
