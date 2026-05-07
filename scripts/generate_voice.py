@@ -62,6 +62,15 @@ SCRIPTS: dict[str, str] = {
         "No more repeating yourself every time you open a new session. "
         "Follow for a new Claude Code feature every single day."
     ),
+    "autoreels": (
+        "So I built a tool that makes Instagram Reels about Claude Code features — and it does everything for you. "
+        "You just run one command, pick a feature, and it handles the animations, the voice, the whole video. "
+        "Terminal demos, before and after cards, all of it — rendered into a ready-to-post MP4 in about five minutes. "
+        "No editing, no design skills needed. "
+        "Completely free and open source. "
+        "Link in bio. "
+        "Follow for a new Claude Code feature every single day."
+    ),
 }
 # ─────────────────────────────────────────────────────────────────────────────
 

@@ -1,6 +1,7 @@
 node_modules/
 .venv/
 out/*.mp4
+!out/autoreels-reel.mp4
 public/*.wav
 
 # Gitignore generated voice files — but keep the two shipped ones
