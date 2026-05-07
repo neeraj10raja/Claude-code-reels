@@ -63,13 +63,12 @@ SCRIPTS: dict[str, str] = {
         "Follow for a new Claude Code feature every single day."
     ),
     "autoreels": (
-        "So I built a tool that makes Instagram Reels about Claude Code features — and it does everything for you. "
-        "You just run one command, pick a feature, and it handles the animations, the voice, the whole video. "
-        "Terminal demos, before and after cards, all of it — rendered into a ready-to-post MP4 in about five minutes. "
-        "No editing, no design skills needed. "
-        "Completely free and open source. "
-        "Link in bio. "
-        "Follow for a new Claude Code feature every single day."
+        "So I built a tool that generates Instagram Reels about any topic — automatically. "
+        "You just tell it what you want to cover, and it creates the animations, clones your voice, "
+        "and renders a professional video ready to post. "
+        "Developers, educators, marketers, creators — no editing skills needed. "
+        "One command, one topic, one reel. "
+        "Completely free and open source. Follow for more."
     ),
 }
 # ─────────────────────────────────────────────────────────────────────────────

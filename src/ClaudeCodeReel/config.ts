@@ -1,41 +1,41 @@
-// Auto-generated config for the Claude Code Reels repo itself
-// Edit any field, then re-render: npm run render -- --output out/autoreels-reel.mp4
+// Auto-generated config — edit any field, then re-render:
+// npm run render -- --output out/autoreels-reel.mp4
 
 export const FEATURE = {
-  badge: "Open Source · GitHub",
+  badge: "Free & Open Source",
   title: "AutoReels",
-  subtitle: "Generate Instagram Reels\nfor Claude Code features",
+  subtitle: "Turn any topic into a\nprofessional Instagram Reel",
   audioFile: "autoreels-voice.m4a",
 
   bullets: [
-    { icon: "🎬", text: "5-scene animated reel, 33 seconds" },
+    { icon: "🎯", text: "Any topic, any niche, any audience" },
     { icon: "🎙️", text: "Clone your voice automatically" },
-    { icon: "⚡", text: "One command renders a ready MP4" },
-    { icon: "🆓", text: "Fully free and open source" },
+    { icon: "⚡", text: "One command, ready-to-post MP4" },
+    { icon: "🆓", text: "100% free and open source" },
   ],
 
   terminal: {
-    userMessage: "Create a reel about MCP servers",
+    userMessage: "Create a reel about productivity tips for developers",
     steps: [
-      { tool: "setup.py",        input: "feature: mcp",      output: "Config written ✓",   color: "#2997FF", delay: 40,  duration: 30, isHook: false },
-      { tool: "generate_voice",  input: "mcp narration",     output: "mcp-voice.m4a ✓",    color: "#2997FF", delay: 85,  duration: 30, isHook: false },
-      { tool: "remotion render", input: "ClaudeCodeReel",    output: "mcp-reel.mp4 ready", color: "#34d399", delay: 130, duration: 25, isHook: false },
+      { tool: "setup.py",        input: "topic: productivity tips",  output: "Config written ✓",      color: "#2997FF", delay: 40,  duration: 30, isHook: false },
+      { tool: "generate_voice",  input: "cloning your voice...",     output: "voice.m4a ready ✓",     color: "#a78bfa", delay: 85,  duration: 30, isHook: false },
+      { tool: "remotion render", input: "5 animated scenes",         output: "reel.mp4  30s  7 MB ✓", color: "#34d399", delay: 130, duration: 25, isHook: false },
     ],
-    summary: "✓ Ready-to-post reel in under 5 minutes.",
+    summary: "✓ Professional reel ready to post in under 5 minutes.",
     summaryFrame: 220,
   },
 
   impact: {
-    before: { value: "Hours",  detail: "Manual video editing per reel" },
+    before: { value: "Hours",  detail: "Manual recording & editing" },
     after:  { value: "5 min",  detail: "One command, done" },
     metric: "10×",
     metricSuffix: " faster",
-    metricLabel: "reel production",
+    metricLabel: "than traditional video creation",
   },
 
   cta: {
     handle: "@claudecodereels",
-    tagline: "New Claude Code feature every day",
+    tagline: "Open source tools for Claude Code",
     followText: "Follow for more",
   },
 } as const;

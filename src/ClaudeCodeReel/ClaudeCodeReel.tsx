@@ -20,13 +20,17 @@ export const SCENE_DURATIONS = {
   cta: 165,         // 5.5s
 };
 
+// Transitions overlap scenes, so subtract each transition duration
+const TOTAL_TRANSITION_FRAMES = 20 + 20 + 20 + 30; // 4 transitions
+
 export const CLAUDE_CODE_REEL_TOTAL_FRAMES =
   SCENE_DURATIONS.intro +
   SCENE_DURATIONS.whatItDoes +
   SCENE_DURATIONS.terminal +
   SCENE_DURATIONS.impact +
-  SCENE_DURATIONS.cta;
-// = 990 frames = 33 seconds at 30fps
+  SCENE_DURATIONS.cta
+  - TOTAL_TRANSITION_FRAMES;
+// = 900 frames = 30 seconds at 30fps
 
 const transition = springTiming({
   config: { damping: 200, stiffness: 180 },

@@ -1,129 +1,104 @@
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { COLORS } from "./colors";
 import { FEATURE } from "./config";
-import { ClaudeCodeWordmark, AnthropicBadge } from "./Logos";
+import { AnthropicBadge } from "./Logos";
+import { Background, gradientText } from "./Background";
 
 export const Scene5CTA: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const orbScale = 1 + Math.sin(frame * 0.05) * 0.07;
+  const followOpacity = interpolate(frame, [5, 28], [0, 1], { extrapolateRight: "clamp" });
 
-  const labelOpacity = interpolate(frame, [5, 25], [0, 1], { extrapolateRight: "clamp" });
+  const handleScale = spring({ frame: frame - 20, fps, config: { damping: 70, stiffness: 180 } });
+  const handleOpacity = interpolate(frame, [20, 45], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  const titleScale = spring({ frame: frame - 20, fps, config: { damping: 70, stiffness: 180 } });
-  const titleOpacity = interpolate(frame, [20, 45], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const lineWidth = interpolate(spring({ frame: frame - 55, fps, config: { damping: 100 } }), [0, 1], [0, 420]);
 
-  const lineWidth = interpolate(spring({ frame: frame - 50, fps, config: { damping: 100 } }), [0, 1], [0, 400]);
+  const taglineY = interpolate(spring({ frame: frame - 68, fps, config: { damping: 100 } }), [0, 1], [30, 0]);
+  const taglineOpacity = interpolate(frame, [68, 88], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  const taglineY = interpolate(spring({ frame: frame - 65, fps, config: { damping: 100 } }), [0, 1], [30, 0]);
-  const taglineOpacity = interpolate(frame, [65, 85], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-
-  const badgeOpacity = interpolate(frame, [90, 110], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-
-  const logoScale = spring({ frame: frame - 5, fps, config: { damping: 70, stiffness: 160 } });
-  const logoOpacity = interpolate(frame, [5, 25], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-
+  const githubOpacity = interpolate(frame, [95, 115], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const attributionOpacity = interpolate(frame, [120, 145], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
+  // Pulsing glow behind button
+  const glowPulse = 0.6 + Math.sin(frame * 0.08) * 0.2;
+
   return (
-    <AbsoluteFill style={{ background: COLORS.bg, overflow: "hidden" }}>
-      {/* Grid */}
-      <AbsoluteFill style={{ opacity: 0.05 }}>
-        <svg width="1080" height="1920">
-          {Array.from({ length: 12 }, (_, i) => (
-            <line key={`v${i}`} x1={i * 98} y1="0" x2={i * 98} y2="1920" stroke={COLORS.blue} strokeWidth="1" />
-          ))}
-          {Array.from({ length: 22 }, (_, i) => (
-            <line key={`h${i}`} x1="0" y1={i * 90} x2="1080" y2={i * 90} stroke={COLORS.blue} strokeWidth="1" />
-          ))}
-        </svg>
-      </AbsoluteFill>
+    <AbsoluteFill style={{ overflow: "hidden" }}>
+      <Background frame={frame} />
 
-      {/* Glowing orb */}
-      <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <AbsoluteFill style={{
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center", padding: "0 60px",
+      }}>
+        {/* Follow label */}
         <div style={{
-          width: 700,
-          height: 700,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(41,151,255,0.18) 0%, rgba(167,139,250,0.08) 50%, transparent 70%)",
-          transform: `scale(${orbScale})`,
-        }} />
-      </AbsoluteFill>
-
-      <AbsoluteFill style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "0 60px" }}>
-        {/* Claude Code logo — prominent, animated in */}
-        <div style={{
-          transform: `scale(${interpolate(logoScale, [0, 1], [0.7, 1])})`,
-          opacity: logoOpacity,
-          marginBottom: 48,
+          opacity: followOpacity,
+          fontFamily: COLORS.mono, fontSize: 22, letterSpacing: 5,
+          textTransform: "uppercase" as const, color: "rgba(255,255,255,0.35)",
+          marginBottom: 36,
         }}>
-          <ClaudeCodeWordmark size={30} color={COLORS.blue} showIcon />
-        </div>
-
-        {/* "Follow for more" label */}
-        <div style={{ opacity: labelOpacity, fontSize: 20, fontFamily: COLORS.mono, letterSpacing: 5, textTransform: "uppercase" as const, color: COLORS.textDim, marginBottom: 28 }}>
           {FEATURE.cta.followText}
         </div>
 
-        {/* Handle */}
+        {/* Handle — gradient pill button */}
         <div style={{
-          transform: `scale(${titleScale})`,
-          opacity: titleOpacity,
-          fontSize: 78,
-          fontWeight: 800,
-          fontFamily: COLORS.sans,
-          color: COLORS.text,
-          letterSpacing: -2,
-          textAlign: "center",
-          textShadow: "0 0 60px rgba(41,151,255,0.35)",
+          transform: `scale(${interpolate(handleScale, [0, 1], [0.8, 1])})`,
+          opacity: handleOpacity,
+          marginBottom: 40,
+          position: "relative",
         }}>
-          {FEATURE.cta.handle}
+          {/* Glow */}
+          <div style={{
+            position: "absolute", inset: -20, borderRadius: 70,
+            background: "linear-gradient(135deg, rgba(41,151,255,0.3), rgba(52,211,153,0.2))",
+            filter: "blur(24px)", opacity: glowPulse,
+          }} />
+          <div style={{
+            position: "relative",
+            background: "linear-gradient(135deg, #2997FF, #34d399)",
+            borderRadius: 60, padding: "28px 80px",
+          }}>
+            <span style={{
+              fontFamily: COLORS.sans, fontSize: 52, fontWeight: 800,
+              color: "#fff", letterSpacing: -1,
+            }}>
+              {FEATURE.cta.handle}
+            </span>
+          </div>
         </div>
 
-        {/* Divider */}
+        {/* Gradient divider */}
         <div style={{
-          width: lineWidth,
-          height: 2,
-          background: `linear-gradient(90deg, transparent, ${COLORS.blue}, ${COLORS.purple}, transparent)`,
-          marginTop: 32,
-          marginBottom: 32,
+          width: lineWidth, height: 2, marginBottom: 36,
+          background: "linear-gradient(90deg, transparent, #2997FF, #34d399, transparent)",
+          borderRadius: 2,
         }} />
 
         {/* Tagline */}
         <div style={{
           transform: `translateY(${taglineY}px)`,
           opacity: taglineOpacity,
-          fontSize: 34,
-          fontFamily: COLORS.sans,
-          fontWeight: 300,
-          color: COLORS.textMuted,
-          textAlign: "center",
-          lineHeight: 1.4,
+          fontFamily: COLORS.sans, fontSize: 32, fontWeight: 400,
+          color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: 1.5,
+          marginBottom: 48,
         }}>
           {FEATURE.cta.tagline}
         </div>
 
-        {/* Badge */}
+        {/* GitHub link */}
         <div style={{
-          opacity: badgeOpacity,
-          marginTop: 56,
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          background: COLORS.blueDim,
-          border: `1px solid ${COLORS.borderBright}`,
-          borderRadius: 100,
-          padding: "14px 32px",
+          opacity: githubOpacity,
+          fontFamily: COLORS.mono, fontSize: 22,
+          color: "rgba(255,255,255,0.25)", marginBottom: 48,
+          ...gradientText,
         }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: COLORS.blue }} />
-          <span style={{ fontFamily: COLORS.mono, fontSize: 20, color: COLORS.blue, letterSpacing: 2 }}>
-            Claude Code · Daily Tips
-          </span>
+          github.com/neeraj10raja/Claude-code-reels
         </div>
 
-        {/* Anthropic attribution — fades in last */}
-        <div style={{ marginTop: 40 }}>
+        {/* Anthropic badge */}
+        <div style={{ marginTop: 8 }}>
           <AnthropicBadge opacity={attributionOpacity} />
         </div>
       </AbsoluteFill>

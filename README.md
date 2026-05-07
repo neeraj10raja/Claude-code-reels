@@ -1,18 +1,29 @@
-# Claude Code Reels
+# AutoReels
 
-Generate professional **Instagram Reels** for Claude Code features — animated scenes, voice-cloned narration in your own voice, rendered to a ready-to-post 1080×1920 MP4.
+<p align="center">
+  <img src="out/demo.gif" width="280" alt="AutoReels demo" />
+</p>
+
+<p align="center">
+  <strong>Turn any topic into a professional Instagram Reel — automatically.</strong><br/>
+  Animated scenes · Voice cloning · Ready-to-post 1080×1920 MP4
+</p>
+
+<p align="center">
+  <a href="https://github.com/neeraj10raja/Claude-code-reels/blob/main/out/autoreels-reel.mp4">▶ Watch full demo reel</a> &nbsp;·&nbsp;
+  <img src="https://img.shields.io/badge/free-no%20API%20key-34d399" alt="free" />
+  &nbsp;·&nbsp;
+  <img src="https://img.shields.io/badge/render-5%20min-2997FF" alt="5 min" />
+  &nbsp;·&nbsp;
+  <img src="https://img.shields.io/badge/license-MIT-a78bfa" alt="MIT" />
+</p>
+
+---
 
 > Built with [Remotion](https://remotion.dev) + [Chatterbox TTS](https://github.com/resemble-ai/chatterbox). Completely free to run.
 
 **Time to first render:** ~5 minutes (`git clone` + `npm install` + render — no Python needed to start)
 **Time to use your own voice:** ~20 minutes extra (Python setup + 1.5 GB model download, one-time only)
-
-<!--
-  ⭐ Add a demo GIF here before publishing:
-  Open out/hooks-reel.mp4, screen-record 5 seconds of it playing,
-  convert to GIF (e.g. with Gifski), and drop the file here.
-  A GIF at the top of the README is the #1 driver of GitHub stars.
--->
 
 ---
 
